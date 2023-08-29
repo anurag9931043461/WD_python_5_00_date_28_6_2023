@@ -1,0 +1,87 @@
+Introduction of python:
+
+
+Programming: programming is a set of code which we pass to a machine to get any specific output.
+------------
+
+Languages: 
+------------
+
+> High level language:Human speaking language(Hindi english french etc..) , there are more then 5000+   
+> Low level language :Machine level language are called low level language, binary number (0,1)
+> programming language: 9000+ programming language in then world. 250+ language are in use for development.
+-----------------------------------------------------------------------------------------------------
+
+python: Guido Van rossum, Netherland, develope python when he was working in CWI,Netherland.
+	> 1989--> introduce python 1st version in 1991
+	> Amoeba distributed operating system.--> developed using ABC programming language 
+	> Monty python flying circus ---> BBC1--> 45episode in 6 years--> python name picked from "Monty python
+	flying circus".
+----------------------------------------------------------------------------------------------
+Disadvantage:
+-------------
+> Execution time is high.
+> choice of mobile application development is bad.
+
+--------------------------------------------------------------------------------
+Advantage:
+----------
+> data processing.
+> prediction using machine learning and deep learning 
+> scripting is very easy.
+> web development 
+> python developer
+> etc...
+--------------------------------------------------------------------------------
+python installer/setup:
+----------------------
+> IDLE:(Integrated development learning environment):it is used for I/O operation
+> Interpreter: conversion of high level language to machine level language.
+> pip:
+> Standard libary: 
+> Documentation:
+
+------------------------------------------------------------------
+topics:
+-------
+> comment
+> variable
+> datatype
+    > int
+    > float
+    > string
+    > list
+    > tuple
+    > set
+    > frozenset
+    > dictionary
+    > boolean 
+    > complex
+> casting
+> input
+> operator
+> conditional programming 
+    > if else
+        > nested if else
+        > ternary operator
+    > if elif else
+        > nested if elif else
+
+> Loop
+    > for loop
+        > nested for loop
+        > single for loop with pattern
+        > nested for loop with pattern
+        > list comprehension
+        > set comprehension
+        > dictionary comprehension
+        > tuple comprehension(generator)
+    > while loop
+        > simple while loop
+        > nested while loop 
+        > pattern using simple while loop
+        > pattern using nested while loop
+
+
+
+
