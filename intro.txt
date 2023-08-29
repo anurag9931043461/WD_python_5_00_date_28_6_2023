@@ -110,5 +110,16 @@ function:
         > top line programming
         > procedural programming/functional programming
         > OOPs
+    > class 
+        > class variable
+        > instance variable
+        > self keyword
+        > static methods
+        > class methods
+    > object
+    > encasulation
+    > abstraction
+    > polymorphism
+    > inheritance
 
 

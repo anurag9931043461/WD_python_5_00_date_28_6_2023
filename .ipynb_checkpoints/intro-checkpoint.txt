@@ -82,6 +82,44 @@ topics:
         > pattern using simple while loop
         > pattern using nested while loop
 
+function:
+    > def 
+    > local variable 
+    > global variable
+    > local scope 
+    > global scope
+    > return 
+    > argument
+        > default argument
+        > positional argument
+        > keyword argument
+        > arbitrary positional argument
+        > arbitrary keyword argument
+    > lambda
+    > nested function
+    > decorator
+    > generator(yield)
 
+> Package and Module
+> Multitasking:
+> gc(incomplete)
+
+> OOPs: Object oriented programming structure
+
+    > programming paradigm:
+        > top line programming
+        > procedural programming/functional programming
+        > OOPs
+    > class 
+        > class variable
+        > instance variable
+        > self keyword
+        > static methods
+        > class methods
+    > object
+    > encasulation
+    > abstraction
+    > polymorphism
+    > inheritance
 
 
