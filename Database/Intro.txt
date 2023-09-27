@@ -1,0 +1,25 @@
+2008:
+
+DBMS: Database management system.
+
+MS Access--> 1.5 lakh, merging of table is not possible, slow.
+
+--------------------------------------------------------------------
+SQL>
+RDBMS: Relational database management system.
+
+MYSQL Server 
+Oracle Server
+DB2 Server
+SQL Server
+
+---------------------------------------------------
+
+NoSQL:
+
+MongoDb:
+
+---------------------------------------------------------
+
+Why we created SQL?
+
