@@ -1,0 +1,87 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 34
+Server version: 8.0.33 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| wd12               |
+| wd2                |
+| wd5                |
+| wd7                |
+| world              |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> use wd5;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_wd5 |
++---------------+
+| railways      |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> select * from railways;
+Empty set (0.00 sec)
+
+mysql> desc railways;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| PNR    | int         | YES  |     | NULL    |       |
+| Name   | varchar(50) | YES  |     | NULL    |       |
+| Amount | float       | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into railways values(1231434,"Krishna",2342.99);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from railways;
++---------+---------+---------+
+| PNR     | Name    | Amount  |
++---------+---------+---------+
+| 1231434 | Krishna | 2342.99 |
++---------+---------+---------+
+1 row in set (0.00 sec)
+
+mysql> insert into railways values(234234,"Mohit",32434.43),(342455,"Srinivas",232.32);
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select  * from railways;
++---------+----------+---------+
+| PNR     | Name     | Amount  |
++---------+----------+---------+
+| 1231434 | Krishna  | 2342.99 |
+|  234234 | Mohit    | 32434.4 |
+|  342455 | Srinivas |  232.32 |
++---------+----------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select sum(Amount) from railways;
++--------------------+
+| sum(Amount)        |
++--------------------+
+| 35009.739685058594 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql>
