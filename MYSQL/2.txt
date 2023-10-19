@@ -1,0 +1,468 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.33 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| wd12               |
+| wd2                |
+| wd5                |
+| wd7                |
+| we10               |
+| we2                |
+| we4                |
+| world              |
++--------------------+
+13 rows in set (0.00 sec)
+
+mysql> use wd5;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_wd5 |
++---------------+
+| restra        |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> select * from restra;
++------+----------+---------+
+| sn   | name     | bill    |
++------+----------+---------+
+|    1 | krishna  |   32.43 |
+|    2 | Aditya   |   43.54 |
+|    3 | Rahul    |       0 |
+|    4 | varonica |   53.32 |
+|    5 | Harleen  |  546.09 |
+|    6 | Tanya    | 3243.32 |
+|    7 | Ragini   | 3546.99 |
++------+----------+---------+
+7 rows in set (0.01 sec)
+
+mysql> -- aggregate function
+mysql> -- min(),max(),count(),sum(),distinct(),avg()
+mysql> select min(bill) from restra;
++-----------+
+| min(bill) |
++-----------+
+|         0 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select max(bill) from restra;
++-----------+
+| max(bill) |
++-----------+
+|   3546.99 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select avg(bill) from restra;
++--------------------+
+| avg(bill)          |
++--------------------+
+| 1066.5271551949638 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> update restra set bill=3546.99 where sn=3;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from restra;
++------+----------+---------+
+| sn   | name     | bill    |
++------+----------+---------+
+|    1 | krishna  |   32.43 |
+|    2 | Aditya   |   43.54 |
+|    3 | Rahul    | 3546.99 |
+|    4 | varonica |   53.32 |
+|    5 | Harleen  |  546.09 |
+|    6 | Tanya    | 3243.32 |
+|    7 | Ragini   | 3546.99 |
++------+----------+---------+
+7 rows in set (0.00 sec)
+
+mysql> select distinct(bill) from restra;
++---------+
+| bill    |
++---------+
+|   32.43 |
+|   43.54 |
+| 3546.99 |
+|   53.32 |
+|  546.09 |
+| 3243.32 |
++---------+
+6 rows in set (0.00 sec)
+
+mysql> select count(bill) from restra;
++-------------+
+| count(bill) |
++-------------+
+|           7 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select * from restra;
++------+----------+---------+
+| sn   | name     | bill    |
++------+----------+---------+
+|    1 | krishna  |   32.43 |
+|    2 | Aditya   |   43.54 |
+|    3 | Rahul    | 3546.99 |
+|    4 | varonica |   53.32 |
+|    5 | Harleen  |  546.09 |
+|    6 | Tanya    | 3243.32 |
+|    7 | Ragini   | 3546.99 |
++------+----------+---------+
+7 rows in set (0.00 sec)
+
+mysql> update restra set bill=100 where sn=1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from restra;
++------+----------+---------+
+| sn   | name     | bill    |
++------+----------+---------+
+|    1 | krishna  |     100 |
+|    2 | Aditya   |   43.54 |
+|    3 | Rahul    | 3546.99 |
+|    4 | varonica |   53.32 |
+|    5 | Harleen  |  546.09 |
+|    6 | Tanya    | 3243.32 |
+|    7 | Ragini   | 3546.99 |
++------+----------+---------+
+7 rows in set (0.00 sec)
+
+mysql> alter restra add including_gst float;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'restra add including_gst float' at line 1
+mysql> alter restra add column including_gst float;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'restra add column including_gst float' at line 1
+mysql> alter restra add gst float;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'restra add gst float' at line 1
+mysql> alter table restra add including_gst float;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from restra;
++------+----------+---------+---------------+
+| sn   | name     | bill    | including_gst |
++------+----------+---------+---------------+
+|    1 | krishna  |     100 |          NULL |
+|    2 | Aditya   |   43.54 |          NULL |
+|    3 | Rahul    | 3546.99 |          NULL |
+|    4 | varonica |   53.32 |          NULL |
+|    5 | Harleen  |  546.09 |          NULL |
+|    6 | Tanya    | 3243.32 |          NULL |
+|    7 | Ragini   | 3546.99 |          NULL |
++------+----------+---------+---------------+
+7 rows in set (0.00 sec)
+
+mysql> select 100+100*0.18;
++--------------+
+| 100+100*0.18 |
++--------------+
+|       118.00 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> update restra set including_gst=100+100.18;
+Query OK, 7 rows affected (0.01 sec)
+Rows matched: 7  Changed: 7  Warnings: 0
+
+mysql> select * from restra;
++------+----------+---------+---------------+
+| sn   | name     | bill    | including_gst |
++------+----------+---------+---------------+
+|    1 | krishna  |     100 |        200.18 |
+|    2 | Aditya   |   43.54 |        200.18 |
+|    3 | Rahul    | 3546.99 |        200.18 |
+|    4 | varonica |   53.32 |        200.18 |
+|    5 | Harleen  |  546.09 |        200.18 |
+|    6 | Tanya    | 3243.32 |        200.18 |
+|    7 | Ragini   | 3546.99 |        200.18 |
++------+----------+---------+---------------+
+7 rows in set (0.00 sec)
+
+mysql> update restra set including_gst=100+100*18;
+Query OK, 7 rows affected (0.01 sec)
+Rows matched: 7  Changed: 7  Warnings: 0
+
+mysql> select * from restra;
++------+----------+---------+---------------+
+| sn   | name     | bill    | including_gst |
++------+----------+---------+---------------+
+|    1 | krishna  |     100 |          1900 |
+|    2 | Aditya   |   43.54 |          1900 |
+|    3 | Rahul    | 3546.99 |          1900 |
+|    4 | varonica |   53.32 |          1900 |
+|    5 | Harleen  |  546.09 |          1900 |
+|    6 | Tanya    | 3243.32 |          1900 |
+|    7 | Ragini   | 3546.99 |          1900 |
++------+----------+---------+---------------+
+7 rows in set (0.00 sec)
+
+mysql> update restra set including_gst=bill+bill*0.18;
+Query OK, 7 rows affected (0.01 sec)
+Rows matched: 7  Changed: 7  Warnings: 0
+
+mysql> select * from restra;
++------+----------+---------+---------------+
+| sn   | name     | bill    | including_gst |
++------+----------+---------+---------------+
+|    1 | krishna  |     100 |           118 |
+|    2 | Aditya   |   43.54 |       51.3772 |
+|    3 | Rahul    | 3546.99 |       4185.45 |
+|    4 | varonica |   53.32 |       62.9176 |
+|    5 | Harleen  |  546.09 |       644.386 |
+|    6 | Tanya    | 3243.32 |       3827.12 |
+|    7 | Ragini   | 3546.99 |       4185.45 |
++------+----------+---------+---------------+
+7 rows in set (0.00 sec)
+
+mysql> select 43.54*0.18;
++------------+
+| 43.54*0.18 |
++------------+
+|     7.8372 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select 43.54+7.8372;
++--------------+
+| 43.54+7.8372 |
++--------------+
+|      51.3772 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select * from restra;;
++------+----------+---------+---------------+
+| sn   | name     | bill    | including_gst |
++------+----------+---------+---------------+
+|    1 | krishna  |     100 |           118 |
+|    2 | Aditya   |   43.54 |       51.3772 |
+|    3 | Rahul    | 3546.99 |       4185.45 |
+|    4 | varonica |   53.32 |       62.9176 |
+|    5 | Harleen  |  546.09 |       644.386 |
+|    6 | Tanya    | 3243.32 |       3827.12 |
+|    7 | Ragini   | 3546.99 |       4185.45 |
++------+----------+---------+---------------+
+7 rows in set (0.00 sec)
+
+ERROR:
+No query specified
+
+mysql> update restra set including_gst=including_gst+5000 where including_gst>4000;
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from restra;
++------+----------+---------+---------------+
+| sn   | name     | bill    | including_gst |
++------+----------+---------+---------------+
+|    1 | krishna  |     100 |           118 |
+|    2 | Aditya   |   43.54 |       51.3772 |
+|    3 | Rahul    | 3546.99 |       9185.45 |
+|    4 | varonica |   53.32 |       62.9176 |
+|    5 | Harleen  |  546.09 |       644.386 |
+|    6 | Tanya    | 3243.32 |       3827.12 |
+|    7 | Ragini   | 3546.99 |       9185.45 |
++------+----------+---------+---------------+
+7 rows in set (0.00 sec)
+
+mysql> update restra set including_gst=0 where including_gst>100 and including_gst<4000;
+Query OK, 3 rows affected (0.01 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> select * from restra;
++------+----------+---------+---------------+
+| sn   | name     | bill    | including_gst |
++------+----------+---------+---------------+
+|    1 | krishna  |     100 |             0 |
+|    2 | Aditya   |   43.54 |       51.3772 |
+|    3 | Rahul    | 3546.99 |       9185.45 |
+|    4 | varonica |   53.32 |       62.9176 |
+|    5 | Harleen  |  546.09 |             0 |
+|    6 | Tanya    | 3243.32 |             0 |
+|    7 | Ragini   | 3546.99 |       9185.45 |
++------+----------+---------+---------------+
+7 rows in set (0.00 sec)
+
+mysql> update restra set including_gst=0;
+Query OK, 4 rows affected (0.01 sec)
+Rows matched: 7  Changed: 4  Warnings: 0
+
+mysql> select * from restra;
++------+----------+---------+---------------+
+| sn   | name     | bill    | including_gst |
++------+----------+---------+---------------+
+|    1 | krishna  |     100 |             0 |
+|    2 | Aditya   |   43.54 |             0 |
+|    3 | Rahul    | 3546.99 |             0 |
+|    4 | varonica |   53.32 |             0 |
+|    5 | Harleen  |  546.09 |             0 |
+|    6 | Tanya    | 3243.32 |             0 |
+|    7 | Ragini   | 3546.99 |             0 |
++------+----------+---------+---------------+
+7 rows in set (0.00 sec)
+
+mysql> alter table restra modify including_gst = gst float;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= gst float' at line 1
+mysql> alter table restra modify including_gst gst;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'gst' at line 1
+mysql> alter table restra modify including_gst gst float;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'gst float' at line 1
+mysql> alter table restra modify column including_gst int;
+Query OK, 7 rows affected (0.06 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from restra;
++------+----------+---------+---------------+
+| sn   | name     | bill    | including_gst |
++------+----------+---------+---------------+
+|    1 | krishna  |     100 |             0 |
+|    2 | Aditya   |   43.54 |             0 |
+|    3 | Rahul    | 3546.99 |             0 |
+|    4 | varonica |   53.32 |             0 |
+|    5 | Harleen  |  546.09 |             0 |
+|    6 | Tanya    | 3243.32 |             0 |
+|    7 | Ragini   | 3546.99 |             0 |
++------+----------+---------+---------------+
+7 rows in set (0.00 sec)
+
+mysql> alter table restra modify gst int where including_gst;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where including_gst' at line 1
+mysql> alter table restra drop inclusing_gst;
+ERROR 1091 (42000): Can't DROP 'inclusing_gst'; check that column/key exists
+mysql> alter table restra drop including_gst;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from restra;
++------+----------+---------+
+| sn   | name     | bill    |
++------+----------+---------+
+|    1 | krishna  |     100 |
+|    2 | Aditya   |   43.54 |
+|    3 | Rahul    | 3546.99 |
+|    4 | varonica |   53.32 |
+|    5 | Harleen  |  546.09 |
+|    6 | Tanya    | 3243.32 |
+|    7 | Ragini   | 3546.99 |
++------+----------+---------+
+7 rows in set (0.00 sec)
+
+mysql> alter table restra modify bill int;
+Query OK, 7 rows affected (0.04 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from restra;
++------+----------+------+
+| sn   | name     | bill |
++------+----------+------+
+|    1 | krishna  |  100 |
+|    2 | Aditya   |   44 |
+|    3 | Rahul    | 3547 |
+|    4 | varonica |   53 |
+|    5 | Harleen  |  546 |
+|    6 | Tanya    | 3243 |
+|    7 | Ragini   | 3547 |
++------+----------+------+
+7 rows in set (0.00 sec)
+
+mysql> -- wildcard
+mysql> -- like
+mysql> insert into restra values(8,"Radha Singh",13131.434);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from restra where name like "R%";
++------+-------------+-------+
+| sn   | name        | bill  |
++------+-------------+-------+
+|    3 | Rahul       |  3547 |
+|    7 | Ragini      |  3547 |
+|    8 | Radha Singh | 13131 |
++------+-------------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from restra where name like "R%h";
++------+-------------+-------+
+| sn   | name        | bill  |
++------+-------------+-------+
+|    8 | Radha Singh | 13131 |
++------+-------------+-------+
+1 row in set (0.00 sec)
+
+mysql> select * from restra where name like "R____";
++------+-------+------+
+| sn   | name  | bill |
++------+-------+------+
+|    3 | Rahul | 3547 |
++------+-------+------+
+1 row in set (0.00 sec)
+
+mysql> select * from restra where name like "____";
+Empty set (0.00 sec)
+
+mysql> select * from restra where name like "_____";
++------+-------+------+
+| sn   | name  | bill |
++------+-------+------+
+|    3 | Rahul | 3547 |
+|    6 | Tanya | 3243 |
++------+-------+------+
+2 rows in set (0.00 sec)
+
+mysql> select * from restra where name like "_a%";
++------+-------------+-------+
+| sn   | name        | bill  |
++------+-------------+-------+
+|    3 | Rahul       |  3547 |
+|    4 | varonica    |    53 |
+|    5 | Harleen     |   546 |
+|    6 | Tanya       |  3243 |
+|    7 | Ragini      |  3547 |
+|    8 | Radha Singh | 13131 |
++------+-------------+-------+
+6 rows in set (0.00 sec)
+
+mysql> select * from restra where name like "_ad%";
++------+-------------+-------+
+| sn   | name        | bill  |
++------+-------------+-------+
+|    8 | Radha Singh | 13131 |
++------+-------------+-------+
+1 row in set (0.00 sec)
+
+mysql> select * from restra where name like "R%R";
+Empty set (0.00 sec)
+
+mysql> select * from restra where bill=13131;
++------+-------------+-------+
+| sn   | name        | bill  |
++------+-------------+-------+
+|    8 | Radha Singh | 13131 |
++------+-------------+-------+
+1 row in set (0.00 sec)
+
+mysql>
+

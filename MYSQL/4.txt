@@ -1,0 +1,313 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 16
+Server version: 8.0.33 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| wd12               |
+| wd2                |
+| wd5                |
+| wd7                |
+| we10               |
+| we2                |
+| we4                |
+| world              |
++--------------------+
+13 rows in set (0.00 sec)
+
+mysql> use wd5;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_wd5 |
++---------------+
+| college       |
+| family        |
+| hostel        |
+| hostel2       |
+| restra        |
++---------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from restra;
++------+-------------+-------+
+| sn   | name        | bill  |
++------+-------------+-------+
+|    1 | krishna     |   100 |
+|    2 | Aditya      |    44 |
+|    3 | Rahul       |  3547 |
+|    4 | varonica    |    53 |
+|    5 | Harleen     |   546 |
+|    6 | Tanya       |  3243 |
+|    7 | Ragini      |  3547 |
+|    8 | Radha Singh | 13131 |
++------+-------------+-------+
+8 rows in set (0.01 sec)
+
+mysql> select * from restra where bill >44 and bill<546;
++------+----------+------+
+| sn   | name     | bill |
++------+----------+------+
+|    1 | krishna  |  100 |
+|    4 | varonica |   53 |
++------+----------+------+
+2 rows in set (0.00 sec)
+
+mysql> select * from restra where bill between 44 and 546;
++------+----------+------+
+| sn   | name     | bill |
++------+----------+------+
+|    1 | krishna  |  100 |
+|    2 | Aditya   |   44 |
+|    4 | varonica |   53 |
+|    5 | Harleen  |  546 |
++------+----------+------+
+4 rows in set (0.00 sec)
+
+mysql> select * from restra where bill >=44 and bill<=546;
++------+----------+------+
+| sn   | name     | bill |
++------+----------+------+
+|    1 | krishna  |  100 |
+|    2 | Aditya   |   44 |
+|    4 | varonica |   53 |
+|    5 | Harleen  |  546 |
++------+----------+------+
+4 rows in set (0.00 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_wd5 |
++---------------+
+| college       |
+| family        |
+| hostel        |
+| hostel2       |
+| restra        |
++---------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from college;
++------------+------+--------+
+| enrollment | name | branch |
++------------+------+--------+
+|          1 | a    | MCA    |
+|          2 | b    | BCA    |
+|          3 | c    | BTECH  |
+|          4 | d    | BSc.   |
+|         10 | e    | CS     |
++------------+------+--------+
+5 rows in set (0.02 sec)
+
+mysql> select * from hostel;
++------+------+
+| roll | room |
++------+------+
+|    1 |  202 |
+|    2 |  202 |
+|   10 |  405 |
++------+------+
+3 rows in set (0.01 sec)
+
+mysql> create table library(roll int,member_name varchar(50));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into library values(1,)
+    ->
+    -> ';
+    '> ';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')
+
+';
+'' at line 1
+mysql> insert into library values(1,"a"),(2,"b"),(20,"z");
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from library;
++------+-------------+
+| roll | member_name |
++------+-------------+
+|    1 | a           |
+|    2 | b           |
+|   20 | z           |
++------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from college;
++------------+------+--------+
+| enrollment | name | branch |
++------------+------+--------+
+|          1 | a    | MCA    |
+|          2 | b    | BCA    |
+|          3 | c    | BTECH  |
+|          4 | d    | BSc.   |
+|         10 | e    | CS     |
++------------+------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from hostel;
++------+------+
+| roll | room |
++------+------+
+|    1 |  202 |
+|    2 |  202 |
+|   10 |  405 |
++------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from college inner join hostel on college.enrollment=hostel.roll inner join library on college.enrollment= library.roll;
++------------+------+--------+------+------+------+-------------+
+| enrollment | name | branch | roll | room | roll | member_name |
++------------+------+--------+------+------+------+-------------+
+|          1 | a    | MCA    |    1 |  202 |    1 | a           |
+|          2 | b    | BCA    |    2 |  202 |    2 | b           |
++------------+------+--------+------+------+------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from college left join hostel on college.enrollment=hostel.roll inner join library on college.enrollment= library.roll;
++------------+------+--------+------+------+------+-------------+
+| enrollment | name | branch | roll | room | roll | member_name |
++------------+------+--------+------+------+------+-------------+
+|          1 | a    | MCA    |    1 |  202 |    1 | a           |
+|          2 | b    | BCA    |    2 |  202 |    2 | b           |
++------------+------+--------+------+------+------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from college left join hostel on college.enrollment=hostel.roll left join library on college.enrollment= library.roll union select * from college right join hostel on college.enrollment=hostel.roll left join library on college.enrollment=libary.roll;
+ERROR 1054 (42S22): Unknown column 'libary.roll' in 'on clause'
+mysql> select * from college left join hostel on college.enrollment=hostel.roll left join library on college.enrollment= library.roll union select * from college right join hostel on college.enrollment=hostel.roll right join library on college.enrollment=library.roll;
++------------+------+--------+------+------+------+-------------+
+| enrollment | name | branch | roll | room | roll | member_name |
++------------+------+--------+------+------+------+-------------+
+|          1 | a    | MCA    |    1 |  202 |    1 | a           |
+|          2 | b    | BCA    |    2 |  202 |    2 | b           |
+|          3 | c    | BTECH  | NULL | NULL | NULL | NULL        |
+|          4 | d    | BSc.   | NULL | NULL | NULL | NULL        |
+|         10 | e    | CS     |   10 |  405 | NULL | NULL        |
+|       NULL | NULL | NULL   | NULL | NULL |   20 | z           |
++------------+------+--------+------+------+------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_wd5 |
++---------------+
+| college       |
+| family        |
+| hostel        |
+| hostel2       |
+| library       |
+| restra        |
++---------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from hostel2;
++------+------+
+| roll | room |
++------+------+
+|    1 |  202 |
+|   10 |  202 |
++------+------+
+2 rows in set (0.01 sec)
+
+mysql> truncate hostel2;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_wd5 |
++---------------+
+| college       |
+| family        |
+| hostel        |
+| hostel2       |
+| library       |
+| restra        |
++---------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from hostel2;
+Empty set (0.00 sec)
+
+mysql> drop table hostel2;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_wd5 |
++---------------+
+| college       |
+| family        |
+| hostel        |
+| library       |
+| restra        |
++---------------+
+5 rows in set (0.00 sec)
+
+mysql> create table timetable(sn int primary key auto_increment,payment_details varchar(3),date date not null,time time not null, datetime datetime not null);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc timetable;
++-----------------+------------+------+-----+---------+----------------+
+| Field           | Type       | Null | Key | Default | Extra          |
++-----------------+------------+------+-----+---------+----------------+
+| sn              | int        | NO   | PRI | NULL    | auto_increment |
+| payment_details | varchar(3) | YES  |     | NULL    |                |
+| date            | date       | NO   |     | NULL    |                |
+| time            | time       | NO   |     | NULL    |                |
+| datetime        | datetime   | NO   |     | NULL    |                |
++-----------------+------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> insert into timetable values(1,"yes","2023/10/09","05:52:43","2023/10/09 05:52:43");
+Query OK, 1 row affected, 2 warnings (0.01 sec)
+
+mysql> select * from timetable;
++----+-----------------+------------+----------+---------------------+
+| sn | payment_details | date       | time     | datetime            |
++----+-----------------+------------+----------+---------------------+
+|  1 | yes             | 2023-10-09 | 05:52:43 | 2023-10-09 05:52:43 |
++----+-----------------+------------+----------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> insert into timetable values(2,"no",20231009,055243,20231009055243);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from timetable;
++----+-----------------+------------+----------+---------------------+
+| sn | payment_details | date       | time     | datetime            |
++----+-----------------+------------+----------+---------------------+
+|  1 | yes             | 2023-10-09 | 05:52:43 | 2023-10-09 05:52:43 |
+|  2 | no              | 2023-10-09 | 05:52:43 | 2023-10-09 05:52:43 |
++----+-----------------+------------+----------+---------------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into timetable(payment_details,date,time,datetime) values("yes",curdate(),curtime(),now());
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from timetable;
++----+-----------------+------------+----------+---------------------+
+| sn | payment_details | date       | time     | datetime            |
++----+-----------------+------------+----------+---------------------+
+|  1 | yes             | 2023-10-09 | 05:52:43 | 2023-10-09 05:52:43 |
+|  2 | no              | 2023-10-09 | 05:52:43 | 2023-10-09 05:52:43 |
+|  3 | yes             | 2023-10-09 | 17:59:25 | 2023-10-09 17:59:25 |
++----+-----------------+------------+----------+---------------------+
+3 rows in set (0.00 sec)
